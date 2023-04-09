@@ -5,17 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.jdlstudios.multiplicaciones.databinding.FragmentPracticaBinding
+import com.jdlstudios.multiplicaciones.databinding.FragmentInicioBinding
 
-class PracticaFragment : Fragment() {
+class InicioFragment : Fragment() {
 
-    private lateinit var binding: FragmentPracticaBinding
+    private lateinit var binding: FragmentInicioBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        binding = FragmentInicioBinding.inflate(inflater)
         // Inflate the layout for this fragment
-        binding = FragmentPracticaBinding.inflate(inflater)
         return binding.root
     }
 
