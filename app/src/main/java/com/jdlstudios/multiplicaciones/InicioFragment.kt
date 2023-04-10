@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.jdlstudios.multiplicaciones.databinding.FragmentInicioBinding
 
 class InicioFragment : Fragment() {
@@ -17,6 +18,11 @@ class InicioFragment : Fragment() {
     ): View {
         binding = FragmentInicioBinding.inflate(inflater)
         // Inflate the layout for this fragment
+
+        binding.buttonPractice.setOnClickListener {
+            findNavController().navigate(R.id.action_inicioFragment_to_practicaFragment)
+        }
+
         return binding.root
     }
 
