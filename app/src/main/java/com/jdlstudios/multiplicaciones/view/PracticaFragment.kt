@@ -1,4 +1,4 @@
-package com.jdlstudios.multiplicaciones
+package com.jdlstudios.multiplicaciones.view
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,7 +1,8 @@
-package com.jdlstudios.multiplicaciones
+package com.jdlstudios.multiplicaciones.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.jdlstudios.multiplicaciones.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
