@@ -1,4 +1,4 @@
-package com.jdlstudios.multiplicaciones.model
+package com.jdlstudios.multiplicaciones.data.model
 
 data class MultiplicationModel(
     val factor1: Int,

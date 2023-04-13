@@ -2,6 +2,7 @@ package com.jdlstudios.multiplicaciones.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
+import com.jdlstudios.multiplicaciones.ui.viewmodel.MultiplyViewModel
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule

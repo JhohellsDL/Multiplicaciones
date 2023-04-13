@@ -1,4 +1,4 @@
-package com.jdlstudios.multiplicaciones.model
+package com.jdlstudios.multiplicaciones.data.model
 
 import android.util.Log
 

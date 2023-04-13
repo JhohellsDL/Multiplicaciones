@@ -5,7 +5,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.jdlstudios.multiplicaciones.model.MultiplicationModel
+import com.jdlstudios.multiplicaciones.data.model.MultiplicationModel
+import com.jdlstudios.multiplicaciones.ui.viewmodel.MultiplicationViewModel
 import org.junit.Assert.*
 
 import org.junit.After

@@ -1,11 +1,12 @@
-package com.jdlstudios.multiplicaciones.viewmodel
+package com.jdlstudios.multiplicaciones.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.jdlstudios.multiplicaciones.model.MultiplicationModel
-import com.jdlstudios.multiplicaciones.model.MultiplicationProvider
+import com.jdlstudios.multiplicaciones.data.model.MultiplicationModel
+import com.jdlstudios.multiplicaciones.data.model.MultiplicationProvider
+import com.jdlstudios.multiplicaciones.domain.GetMultiplicationUseCase
 import kotlinx.coroutines.*
 
 class MultiplicationViewModel : ViewModel() {
@@ -18,12 +19,14 @@ class MultiplicationViewModel : ViewModel() {
     val stateAnswer: LiveData<Boolean>
         get() = _stateAnswer
 
+    private var getMultiplicationUseCase = GetMultiplicationUseCase()
     init {
         randomMultiplication()
     }
 
     fun randomMultiplication() {
-        val currentMultiplication = MultiplicationProvider.randomMultiplication()
+        //val currentMultiplication = MultiplicationProvider.randomMultiplication()
+        val currentMultiplication = getMultiplicationUseCase()
         _multiplicationModel.value = currentMultiplication
     }
 

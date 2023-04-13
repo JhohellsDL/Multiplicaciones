@@ -1,4 +1,4 @@
-package com.jdlstudios.multiplicaciones.view
+package com.jdlstudios.multiplicaciones.ui.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.jdlstudios.multiplicaciones.databinding.FragmentPracticaBinding
-import com.jdlstudios.multiplicaciones.viewmodel.MultiplicationViewModel
+import com.jdlstudios.multiplicaciones.ui.viewmodel.MultiplicationViewModel
 
 class PracticaFragment : Fragment() {
 

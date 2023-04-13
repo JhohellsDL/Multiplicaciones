@@ -1,9 +1,9 @@
-package com.jdlstudios.multiplicaciones.viewmodel
+package com.jdlstudios.multiplicaciones.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.jdlstudios.multiplicaciones.model.MultiplicationModel
+import com.jdlstudios.multiplicaciones.data.model.MultiplicationModel
 
 class MultiplyViewModel : ViewModel() {
 

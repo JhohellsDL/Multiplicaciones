@@ -1,4 +1,4 @@
-package com.jdlstudios.multiplicaciones.view
+package com.jdlstudios.multiplicaciones.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

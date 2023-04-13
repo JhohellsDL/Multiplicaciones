@@ -1,4 +1,4 @@
-package com.jdlstudios.multiplicaciones.view
+package com.jdlstudios.multiplicaciones.ui.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
