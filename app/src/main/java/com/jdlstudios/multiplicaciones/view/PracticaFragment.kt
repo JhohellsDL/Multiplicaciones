@@ -8,12 +8,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.jdlstudios.multiplicaciones.databinding.FragmentPracticaBinding
-import com.jdlstudios.multiplicaciones.viewmodel.MultiplyViewModel
+import com.jdlstudios.multiplicaciones.viewmodel.MultiplicationViewModel
 
 class PracticaFragment : Fragment() {
 
     private lateinit var binding: FragmentPracticaBinding
-    private lateinit var viewModel: MultiplyViewModel
+    private lateinit var viewModel: MultiplicationViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,19 +21,20 @@ class PracticaFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentPracticaBinding.inflate(inflater)
 
-        viewModel = ViewModelProvider(this)[MultiplyViewModel::class.java]
-        binding.practiceViewModel = viewModel
+        viewModel = ViewModelProvider(this)[MultiplicationViewModel::class.java]
+        //binding.practiceViewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.numeros.observe(viewLifecycleOwner){
+        viewModel.multiplicationModel.observe(viewLifecycleOwner){
             binding.textviewNumber1.text = it.factor1.toString()
             binding.textviewNumber2.text = it.factor2.toString()
+            binding.textviewResult.text = it.result.toString()
         }
+
         binding.buttonCheck.setOnClickListener {
             val answer = binding.edittextAnswer.text.toString().toIntOrNull()
             if (answer != null) {
-                viewModel.checkAnswer(answer)
-                if (viewModel.answerCorrect.value!!) {
+                if (viewModel.checkAnswer(answer)) {
                     Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, "Incorrect!", Toast.LENGTH_SHORT).show()

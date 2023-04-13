@@ -1,11 +1,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
+    <!--<data>
         <variable
             name="practiceViewModel"
             type="com.jdlstudios.multiplicaciones.viewmodel.MultiplyViewModel" />
-    </data>
+    </data>-->
 
     <RelativeLayout
         android:layout_width="match_parent"

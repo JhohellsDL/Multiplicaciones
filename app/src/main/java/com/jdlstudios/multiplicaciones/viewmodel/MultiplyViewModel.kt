@@ -3,13 +3,13 @@ package com.jdlstudios.multiplicaciones.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.jdlstudios.multiplicaciones.model.Multiply
+import com.jdlstudios.multiplicaciones.model.MultiplicationModel
 
 class MultiplyViewModel : ViewModel() {
 
     // Use nombres de variables más descriptivos
-    private val _numeros = MutableLiveData<Multiply>()
-    val numeros: LiveData<Multiply>
+    private val _numeros = MutableLiveData<MultiplicationModel>()
+    val numeros: LiveData<MultiplicationModel>
         get() = _numeros
 
     private val _answerCorrect = MutableLiveData<Boolean>()
@@ -32,7 +32,7 @@ class MultiplyViewModel : ViewModel() {
         val product = firstNumber * secondNumber
 
         // Actualice la propiedad _numeros con el resultado
-        _numeros.value = Multiply(firstNumber, secondNumber, product)
+        _numeros.value = MultiplicationModel(firstNumber, secondNumber, product)
 
         // Establezca _answerCorrect en false
         _answerCorrect.value = false

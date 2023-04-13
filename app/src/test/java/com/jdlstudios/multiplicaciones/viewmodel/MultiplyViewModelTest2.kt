@@ -49,7 +49,7 @@ class MultiplyViewModelTest2{
         // Verificamos que los valores generados sean correctos
         assertEquals(numeros!!.factor1, n1)
         assertEquals(numeros.factor2, n2)
-        assertEquals(numeros.product, n1 * n2)
+        assertEquals(numeros.result, n1 * n2)
     }
 
     // Prueba que verifica que se verifique la respuesta correctamente
