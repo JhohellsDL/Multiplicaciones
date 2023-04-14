@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.jdlstudios.multiplicaciones.data.model.MultiplicationModel
 import com.jdlstudios.multiplicaciones.data.model.MultiplicationProvider
 import com.jdlstudios.multiplicaciones.domain.GetMultiplicationUseCase
+import com.jdlstudios.multiplicaciones.domain.model.Multiplication
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -16,8 +17,8 @@ class MultiplicationViewModel @Inject constructor(
     private var getMultiplicationUseCase : GetMultiplicationUseCase
 ): ViewModel() {
 
-    private val _multiplicationModel = MutableLiveData<MultiplicationModel>()
-    val multiplicationModel: LiveData<MultiplicationModel>
+    private val _multiplicationModel = MutableLiveData<Multiplication>()
+    val multiplicationModel: LiveData<Multiplication>
         get() = _multiplicationModel
 
     private val _stateAnswer = MutableLiveData<Boolean>()
