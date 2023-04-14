@@ -3,9 +3,7 @@ package com.jdlstudios.multiplicaciones.data.model
 import android.util.Log
 
 class MultiplicationProvider {
-
     companion object {
-
         fun randomMultiplication(): MultiplicationModel {
             val f1 = (0..10).random()
             val f2 = (0..10).random()
