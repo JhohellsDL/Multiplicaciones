@@ -2,8 +2,10 @@ package com.jdlstudios.multiplicaciones.domain
 
 import com.jdlstudios.multiplicaciones.data.model.MultiplicationModel
 import com.jdlstudios.multiplicaciones.data.repository.MultiplicationRepository
+import javax.inject.Inject
 
-class GetMultiplicationUseCase {
+
+class GetMultiplicationUseCase @Inject constructor() {
 
     private val repository = MultiplicationRepository()
 

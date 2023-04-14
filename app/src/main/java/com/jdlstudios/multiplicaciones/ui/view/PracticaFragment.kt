@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.jdlstudios.multiplicaciones.databinding.FragmentPracticaBinding
 import com.jdlstudios.multiplicaciones.ui.viewmodel.MultiplicationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PracticaFragment : Fragment() {
 
     private lateinit var binding: FragmentPracticaBinding
