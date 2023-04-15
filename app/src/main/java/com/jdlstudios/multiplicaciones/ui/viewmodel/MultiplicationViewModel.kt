@@ -30,7 +30,6 @@ class MultiplicationViewModel @Inject constructor(
     }
 
     fun randomMultiplication() {
-        //val currentMultiplication = MultiplicationProvider.randomMultiplication()
         val currentMultiplication = getMultiplicationUseCase()
         _multiplicationModel.value = currentMultiplication
     }

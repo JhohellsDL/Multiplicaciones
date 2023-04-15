@@ -6,7 +6,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jdlstudios.multiplicaciones.data.model.MultiplicationModel
+import com.jdlstudios.multiplicaciones.domain.GetMultiplicationUseCase
+import com.jdlstudios.multiplicaciones.domain.model.Multiplication
 import com.jdlstudios.multiplicaciones.ui.viewmodel.MultiplicationViewModel
+import io.mockk.MockKAnnotations
+import io.mockk.every
+import io.mockk.impl.annotations.RelaxedMockK
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import net.bytebuddy.agent.builder.AgentBuilder.InitializationStrategy.Dispatcher
 import org.junit.Assert.*
 
 import org.junit.After
@@ -15,83 +26,75 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.mockito.Mockito
+import org.mockito.kotlin.mock
 import kotlin.math.absoluteValue
 
-class MultiplicationViewModelTest {/*
+@ExperimentalCoroutinesApi
+class MultiplicationViewModelTest {
 
-    // Regla que especifica que las tareas se ejecutan en el hilo principal de la prueba
-    @get:Rule
-    var rule: TestRule = InstantTaskExecutorRule()
+    @RelaxedMockK
+    private lateinit var mockUseCase: GetMultiplicationUseCase
 
     private lateinit var viewModel: MultiplicationViewModel
 
-    private val mockMultiplicationModel = Mockito.spy(MutableLiveData<MultiplicationModel>())
+    @get:Rule
+    var rule = InstantTaskExecutorRule()
+
 
     @Before
-    fun setUp() {
-        //viewModel = MultiplicationViewModel()
+    fun onBefore(){
+        MockKAnnotations.init(this)
+        viewModel = MultiplicationViewModel(mockUseCase)
+
+        Dispatchers.setMain(Dispatchers.Unconfined)
     }
 
     @After
-    fun tearDown() {
+    fun onAfter(){
+        Dispatchers.resetMain()
     }
 
     @Test
-    fun `checkAnswer with correct answer should return true`() {
-       *//* // Given
+    fun `randomMultiplication recibe una multiplicacion alatoria`() = runTest {
+        //Given
+        val multiplication = Multiplication(2,4,8)
+        every { mockUseCase.invoke() } returns multiplication
 
-        val currentMultiplication = viewModel._multiplicationModel.value?.result
-        val answer = currentMultiplication
-        val observer = Observer<MultiplicationModel>{
-            assertEquals(answer,it.result)
-        }
-        mockMultiplicationModel.observeForever(observer)
-
-        // When
-        val result = answer?.let { viewModel.checkAnswer(it) }
-
-        // Then
-        assertEquals(false, result)
-        assertEquals(false, viewModel.stateAnswer.value)*//*
-    }
-
-    @Test
-    fun randomMultiplication() {
-
+        //When
         viewModel.randomMultiplication()
 
-        val multiplicationModel = viewModel.multiplicationModel.value
+        //Then
+        assert(viewModel.multiplicationModel.value == multiplication)
+    }
 
-        assert(multiplicationModel != null)
 
+    @Test
+    fun `checkAnswer deberia retornar true si la respuesta es correcta`() = runTest {
+        //Given
+        val multiplication = Multiplication(2,4,8)
+        every { mockUseCase.invoke() } returns multiplication
+        val answer = viewModel.multiplicationModel.value!!.result
+
+        //When
+        val response = viewModel.checkAnswer(answer)
+
+        //Then
+        assertTrue(response)
     }
 
     @Test
-    fun getMultiplicationModel() {
+    fun `checkAnswer deberia retornar false si la respuesta es incorrecta`() {
 
+        //Given
+        val multiplication = Multiplication(3,5,15)
+        every { mockUseCase.invoke() } returns multiplication
+        val answer = viewModel.multiplicationModel.value!!.result + 1
+
+        //When
+        val response = viewModel.checkAnswer(answer)
+
+        //Then
+        assertFalse(response)
     }
 
-    @Test
-    fun checkAnswer() {
-        viewModel.randomMultiplication()
-
-        val multiplyViewModelTest = viewModel.multiplicationModel
-        val state = viewModel.stateAnswer.value
-        val f1 = multiplyViewModelTest.value!!.factor1
-        val f2 = multiplyViewModelTest.value!!.factor2
-
-        *//*viewModel.checkAnswer(f1*f2+1)
-        assertNotEquals(state, false)*//*
-
-        viewModel.checkAnswer(f1*f2)
-        assertEquals(state, true)
-    }
-
-    @Test
-    fun reset() {
-        viewModel = Mockito.spy(viewModel)
-        viewModel.reset()
-
-        Mockito.verify(viewModel).randomMultiplication()
-    }*/
 }
