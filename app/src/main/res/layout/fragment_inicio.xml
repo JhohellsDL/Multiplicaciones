@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".ui.view.InicioFragment">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_practice"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/principiante" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Select the difficulty of exercises:"
+        android:textSize="24sp" />
 
-</FrameLayout>
+    <RadioGroup
+        android:id="@+id/radio_group_difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="16dp">
+
+        <RadioButton
+            android:id="@+id/radio_button_easy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Easy"
+            android:tag="EASY"/>
+
+        <RadioButton
+            android:id="@+id/radio_button_intermediate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Intermediate"
+            android:tag="INTERMEDIATE"/>
+
+        <RadioButton
+            android:id="@+id/radio_button_challenging"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Challenging"
+            android:tag="CHALLENGING"/>
+
+        <RadioButton
+            android:id="@+id/radio_button_advanced"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Advanced"
+            android:tag="ADVANCED"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="define number of exercises" />
+
+</LinearLayout>

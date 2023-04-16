@@ -1,13 +1,15 @@
 package com.jdlstudios.multiplicaciones.ui.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.jdlstudios.multiplicaciones.R
+import android.widget.RadioButton
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.jdlstudios.multiplicaciones.databinding.FragmentInicioBinding
+import com.jdlstudios.multiplicaciones.domain.DifficultyLevel
+import com.jdlstudios.multiplicaciones.domain.model.ExerciseDifficulty
 
 class InicioFragment : Fragment() {
 
@@ -18,10 +20,22 @@ class InicioFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentInicioBinding.inflate(inflater)
-        // Inflate the layout for this fragment
 
-        binding.buttonPractice.setOnClickListener {
-            findNavController().navigate(R.id.action_inicioFragment_to_practicaFragment)
+        binding.buttonNext.setOnClickListener {
+
+            val selectedDifficulty = binding.radioGroupDifficulty.checkedRadioButtonId.let { id ->
+                binding.root.findViewById<RadioButton>(id)?.tag?.toString()?.let { tag ->
+                    DifficultyLevel.getDifficultyLevelFromName(tag)
+                } ?: DifficultyLevel.EASY
+            }
+
+            val exerciseDifficulty = ExerciseDifficulty(selectedDifficulty, 0)
+
+            it.findNavController().navigate(
+                InicioFragmentDirections.actionInicioFragmentToExerciseQuantityFragment(
+                    exerciseDifficulty
+                )
+            )
         }
 
         return binding.root

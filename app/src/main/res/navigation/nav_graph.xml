@@ -11,12 +11,28 @@
         android:label="fragment_inicio"
         tools:layout="@layout/fragment_inicio" >
         <action
-            android:id="@+id/action_inicioFragment_to_practicaFragment"
-            app:destination="@id/practicaFragment"/>
+            android:id="@+id/action_inicioFragment_to_exerciseQuantityFragment"
+            app:destination="@id/exerciseQuantityFragment" />
     </fragment>
     <fragment
         android:id="@+id/practicaFragment"
         android:name="com.jdlstudios.multiplicaciones.ui.view.PracticaFragment"
         android:label="fragment_practica"
-        tools:layout="@layout/fragment_practica" />
+        tools:layout="@layout/fragment_practica" >
+        <argument
+            android:name="exercise_difficulty"
+            app:argType="com.jdlstudios.multiplicaciones.domain.model.ExerciseDifficulty" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseQuantityFragment"
+        android:name="com.jdlstudios.multiplicaciones.ui.view.ExerciseQuantityFragment"
+        android:label="ExerciseQuantityFragment"
+        tools:layout="@layout/fragment_exercise_quantity" >
+        <action
+            android:id="@+id/action_exerciseQuantityFragment_to_practicaFragment"
+            app:destination="@id/practicaFragment" />
+        <argument
+            android:name="exercise_difficulty"
+            app:argType="com.jdlstudios.multiplicaciones.domain.model.ExerciseDifficulty" />
+    </fragment>
 </navigation>

@@ -1,11 +1,6 @@
 package com.jdlstudios.multiplicaciones.viewmodel
 
-import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.jdlstudios.multiplicaciones.data.model.MultiplicationModel
 import com.jdlstudios.multiplicaciones.domain.GetMultiplicationUseCase
 import com.jdlstudios.multiplicaciones.domain.model.Multiplication
 import com.jdlstudios.multiplicaciones.ui.viewmodel.MultiplicationViewModel
@@ -17,17 +12,12 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import net.bytebuddy.agent.builder.AgentBuilder.InitializationStrategy.Dispatcher
-import org.junit.Assert.*
-
 import org.junit.After
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TestRule
-import org.mockito.Mockito
-import org.mockito.kotlin.mock
-import kotlin.math.absoluteValue
 
 @ExperimentalCoroutinesApi
 class MultiplicationViewModelTest {
