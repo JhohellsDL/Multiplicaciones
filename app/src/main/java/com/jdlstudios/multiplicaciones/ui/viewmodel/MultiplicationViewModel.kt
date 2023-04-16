@@ -1,5 +1,6 @@
 package com.jdlstudios.multiplicaciones.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,12 +28,20 @@ class MultiplicationViewModel @Inject constructor(
     val quantity: LiveData<Int>
         get() = _quantity
 
+    private val _level = MutableLiveData<DifficultyLevel>()
+    val level: LiveData<DifficultyLevel>
+        get() = _level
+
     init {
-        randomMultiplication()
+        level.observeForever { value ->
+            if (value != null) {
+                randomMultiplication(value)
+            }
+        }
     }
 
-    fun randomMultiplication() {
-        val currentMultiplication = getMultiplicationUseCase()
+    fun randomMultiplication(difficulty: DifficultyLevel = level.value ?: DifficultyLevel.EASY) {
+        val currentMultiplication = getMultiplicationUseCase(difficulty)
         _multiplicationModel.value = currentMultiplication
     }
 
@@ -53,6 +62,10 @@ class MultiplicationViewModel @Inject constructor(
 
     fun setQuantity(quantity: Int){
         _quantity.value = quantity
+    }
+
+    fun setDifficulty(level: DifficultyLevel){
+        _level.value = level
     }
 
 }

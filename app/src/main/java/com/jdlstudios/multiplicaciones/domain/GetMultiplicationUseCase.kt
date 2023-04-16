@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 class GetMultiplicationUseCase @Inject constructor(private val repository : MultiplicationRepository) {
 
-    operator fun invoke(): Multiplication {
-        return repository.getMultiplication()
+    operator fun invoke(level: DifficultyLevel): Multiplication {
+        return repository.getMultiplicationFromProvider(level)
     }
 
 }

@@ -9,7 +9,6 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Before
 import org.junit.Test
-import org.mockito.kotlin.mock
 
 class GetMultiplicationUseCaseTest{
 
@@ -30,13 +29,13 @@ class GetMultiplicationUseCaseTest{
     fun `checkAnswer with correct answer should return true`(){
         //Given
         val myMultiplication = Multiplication(factor1 = 2, factor2 = 3, result = 6)
-        every{ mockRepository.getMultiplication() } returns myMultiplication
+        every{ mockRepository.getMultiplicationFromProvider() } returns myMultiplication
 
         //When
         val response = useCase()
 
         //Then
-        verify(exactly = 1) { mockRepository.getMultiplication() }
+        verify(exactly = 1) { mockRepository.getMultiplicationFromProvider() }
         assert(myMultiplication == response)
     }
 }

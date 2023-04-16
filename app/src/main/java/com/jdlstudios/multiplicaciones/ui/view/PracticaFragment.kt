@@ -28,6 +28,7 @@ class PracticaFragment : Fragment() {
         val exerciseQuantityArgs = args.exerciseDifficulty
         var quantity = exerciseQuantityArgs.exerciseCount
 
+        viewModel.setDifficulty(exerciseQuantityArgs.difficulty)
         viewModel.setExerciseDifficultyData(
             exerciseQuantityArgs.difficulty,
             exerciseQuantityArgs.exerciseCount
