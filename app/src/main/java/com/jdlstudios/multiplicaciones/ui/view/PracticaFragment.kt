@@ -26,7 +26,6 @@ class PracticaFragment : Fragment() {
 
         val args: PracticaFragmentArgs by navArgs()
         val exerciseQuantityArgs = args.exerciseDifficulty
-        var quantity = exerciseQuantityArgs.exerciseCount
 
         viewModel.setDifficulty(exerciseQuantityArgs.difficulty)
         viewModel.setExerciseDifficultyData(
@@ -35,34 +34,31 @@ class PracticaFragment : Fragment() {
         )
 
         binding.practiceViewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.quantity.value?.let {
-            quantity = it
-        } ?: run {
-            viewModel.setQuantity(quantity)
-        }
+        viewModel.quantity.value ?: viewModel.setQuantity(exerciseQuantityArgs.exerciseCount)
 
         binding.buttonCheck.setOnClickListener {
-
-            val answer = binding.edittextAnswer.text.toString().toIntOrNull()
-
-            if (answer != null) {
-                if (viewModel.checkAnswer(answer)) {
-                    Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context, "Incorrect!", Toast.LENGTH_SHORT).show()
-                }
-                quantity -= 1
-                viewModel.setQuantity(quantity)
-                viewModel.reset()
-            } else {
-                Toast.makeText(context, "Please enter a number", Toast.LENGTH_SHORT).show()
-            }
+            checkAnswer()
             binding.edittextAnswer.text.clear()
         }
 
         return binding.root
+    }
+
+    private fun checkAnswer() {
+        val answer = binding.edittextAnswer.text.toString().toIntOrNull()
+        if (answer != null) {
+            if (viewModel.checkAnswer(answer)) {
+                Toast.makeText(context, "Correct!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Incorrect!", Toast.LENGTH_SHORT).show()
+            }
+            viewModel.setQuantity((viewModel.quantity.value ?: 0) - 1)
+            viewModel.reset()
+        } else {
+            Toast.makeText(context, "Please enter a number", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
