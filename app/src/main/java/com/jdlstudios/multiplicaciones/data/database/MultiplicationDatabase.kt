@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.jdlstudios.multiplicaciones.data.database.dao.MultiplicationDao
 import com.jdlstudios.multiplicaciones.data.database.entities.MultiplicationEntity
 
-@Database(entities = [MultiplicationEntity::class], version = 1)
+@Database(entities = [MultiplicationEntity::class], version = 1, exportSchema = false)
 abstract class MultiplicationDatabase: RoomDatabase() {
 
     abstract fun getMultiplicationDao(): MultiplicationDao

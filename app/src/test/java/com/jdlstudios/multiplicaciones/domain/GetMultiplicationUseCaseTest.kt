@@ -2,6 +2,7 @@ package com.jdlstudios.multiplicaciones.domain
 
 import com.jdlstudios.multiplicaciones.data.repository.MultiplicationRepository
 import com.jdlstudios.multiplicaciones.domain.model.Multiplication
+import com.jdlstudios.multiplicaciones.domain.usescases.GetMultiplicationUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK

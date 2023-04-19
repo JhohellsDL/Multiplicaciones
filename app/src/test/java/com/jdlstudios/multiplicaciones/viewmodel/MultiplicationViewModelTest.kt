@@ -1,7 +1,7 @@
 package com.jdlstudios.multiplicaciones.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jdlstudios.multiplicaciones.domain.GetMultiplicationUseCase
+import com.jdlstudios.multiplicaciones.domain.usescases.GetMultiplicationUseCase
 import com.jdlstudios.multiplicaciones.domain.model.Multiplication
 import com.jdlstudios.multiplicaciones.ui.viewmodel.MultiplicationViewModel
 import io.mockk.MockKAnnotations
