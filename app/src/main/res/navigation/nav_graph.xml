@@ -34,5 +34,17 @@
         <argument
             android:name="exercise_difficulty"
             app:argType="com.jdlstudios.multiplicaciones.domain.model.ExerciseDifficulty" />
+        <action
+            android:id="@+id/action_exerciseQuantityFragment_to_practicaNivelIntermediateFragment"
+            app:destination="@id/practicaNivelIntermediateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/practicaNivelIntermediateFragment"
+        android:name="com.jdlstudios.multiplicaciones.ui.view.PracticaNivelIntermediateFragment"
+        android:label="PracticaNivelIntermediateFragment"
+        tools:layout="@layout/fragment_practica_nivel_intermediate">
+        <argument
+            android:name="exercise_difficulty"
+            app:argType="com.jdlstudios.multiplicaciones.domain.model.ExerciseDifficulty" />
     </fragment>
 </navigation>

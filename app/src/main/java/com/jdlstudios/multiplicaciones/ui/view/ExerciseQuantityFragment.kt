@@ -8,9 +8,11 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jdlstudios.multiplicaciones.databinding.FragmentExerciseQuantityBinding
+import com.jdlstudios.multiplicaciones.domain.DifficultyLevel
 import com.jdlstudios.multiplicaciones.domain.model.ExerciseDifficulty
 import com.jdlstudios.multiplicaciones.ui.viewmodel.ExerciseQuantityViewModel
 
@@ -18,6 +20,8 @@ class ExerciseQuantityFragment : Fragment() {
 
     private lateinit var binding: FragmentExerciseQuantityBinding
     private val viewModel: ExerciseQuantityViewModel by viewModels()
+
+    private lateinit var exerciseDifficulty: ExerciseDifficulty
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,18 +49,32 @@ class ExerciseQuantityFragment : Fragment() {
         })
 
         binding.buttonStartExercises.setOnClickListener {
+
             val quantityExercises = binding.textQuantity.text.toString().toInt()
             viewModel.setExerciseDifficultyData(exerciseQuantityArgs.difficulty, quantityExercises)
-            val exerciseDifficulty =
+
+            exerciseDifficulty =
                 ExerciseDifficulty(exerciseQuantityArgs.difficulty, quantityExercises)
-            val action =
-                ExerciseQuantityFragmentDirections.actionExerciseQuantityFragmentToPracticaFragment(
-                    exerciseDifficulty
-                )
+
+            val action = getNavigationActionForDifficulty(exerciseDifficulty.difficulty)
+
             findNavController().navigate(action)
+
         }
 
         return binding.root
+    }
+
+    private fun getNavigationActionForDifficulty(difficulty: DifficultyLevel): NavDirections {
+        return when (difficulty) {
+            DifficultyLevel.EASY -> ExerciseQuantityFragmentDirections.actionExerciseQuantityFragmentToPracticaFragment(
+                exerciseDifficulty
+            )
+
+            DifficultyLevel.INTERMEDIATE, DifficultyLevel.CHALLENGING, DifficultyLevel.ADVANCED -> ExerciseQuantityFragmentDirections.actionExerciseQuantityFragmentToPracticaNivelIntermediateFragment(
+                exerciseDifficulty
+            )
+        }
     }
 
 }

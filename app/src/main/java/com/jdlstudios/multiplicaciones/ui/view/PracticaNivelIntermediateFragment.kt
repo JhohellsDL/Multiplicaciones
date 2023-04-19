@@ -6,15 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jdlstudios.multiplicaciones.R
+import com.jdlstudios.multiplicaciones.databinding.FragmentPracticaNivelIntermediateBinding
 
 class PracticaNivelIntermediateFragment : Fragment() {
+
+    private lateinit var binding: FragmentPracticaNivelIntermediateBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_practica_nivel_intermediate, container, false)
+    ): View {
+        binding = FragmentPracticaNivelIntermediateBinding.inflate(inflater)
+
+
+
+        return binding.root
     }
 
 }
